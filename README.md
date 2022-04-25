@@ -46,3 +46,11 @@ digma_opentelemetry_boostrap(service_name='server-ms', digma_backend="http://[AC
 ```bash
 python main.py
 ```
+
+### Troubleshooting
+
+If you've encountered any issue, open the 'output' panel for the digma extension, it may contain more information about the issue:
+
+![image](https://user-images.githubusercontent.com/93863/165012583-9d154ea5-7378-466b-a6cc-686d4b5261e3.png)
+
+
