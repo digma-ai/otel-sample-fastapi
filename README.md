@@ -24,7 +24,7 @@ The following code is a sample application used to test various scenarios, perfo
 1. Clone the repo and switch to the repo folder. 
 2. Optionally create and activate a virtualenv for the project, for example:
 ```bash
-python3 -m venv /venv
+python3 -m venv ./venv
 source venv/bin/activate
 ```
 
