@@ -33,7 +33,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. In main.py, modify the OTEL exporter to use the Digma backend as well. For the 'backend_url' parameter in the Digma instrumentation (line 33) replace 'localhost' with the URL provided to your account, like so:
+4. In main.py, modify the OTEL exporter to use the Digma backend as well. For the 'backend_url' parameter in the Digma instrumentation (line 33) replace 'localhost' with the URL provided to your account, like so (do not include any brackets in the URL):
 
 ```python
 digma_opentelemetry_boostrap(service_name='server-ms', digma_backend="http://[ACCOUNT_URL]:5050",
