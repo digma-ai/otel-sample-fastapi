@@ -1,6 +1,6 @@
 # OpenTelemetry Sample: FastAPI simple API instrumented with OTEL and Digma
 
-The following code is a sample application used to test various scenarios, performance bottlenecks and runtime errors with [Digma](https://github.com/digma-ai/digma).
+The following code is a sample application used to test various scenarios, performance bottlenecks and runtime errors with [Digma](https://github.com/digma-ai/digma). This sample uses the standard OTEL instrumentation library as well as the [Digma instrumentation](https://github.com/digma-ai/opentelemetry-instrumentation-digma) helper library.
 
 ## Preqrequisites
 - [Python 3.8+](https://www.python.org/downloads/)
