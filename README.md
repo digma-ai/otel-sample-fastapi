@@ -11,9 +11,12 @@ The following code is a sample application used to test various scenarios, perfo
 ### Install the IDE extension
 
 1. Install the [Digma Extension](https://marketplace.visualstudio.com/items?itemName=digma.digma) into the vsCode IDE
-2. Open the 'Settings' tab of the extension:
+2. Open the 'Settings' tab of the extension
+
 ![image](https://user-images.githubusercontent.com/93863/165008075-96fa40cd-a566-4c69-9481-195f69f3c425.png)
+
 3. Set the 'Digma URL' to your Digma Account URL on the User/Workspace level.
+
 ![image](https://user-images.githubusercontent.com/93863/165008209-c832fc43-0600-48e9-9324-a5c9f8e4b904.png)
 
 
