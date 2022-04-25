@@ -52,11 +52,11 @@ python main.py
 Play around to trigger some API calls. You can try visiting some of the API urls. 
 For example:
 
-http://localhost:8000
-http://localhost:8000/login
-http://localhost:8000/validate
-http://localhost:8000/process
-http://localhost:8000/validateuser/2
+- http://localhost:8000
+- http://localhost:8000/login
+- http://localhost:8000/validate
+- http://localhost:8000/process
+- http://localhost:8000/validateuser/2
 
 ### Troubleshooting
 
