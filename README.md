@@ -19,7 +19,6 @@ The following code is a sample application used to test various scenarios, perfo
 
 ![image](https://user-images.githubusercontent.com/93863/165008209-c832fc43-0600-48e9-9324-a5c9f8e4b904.png)
 
-
 ### Prepare the FastAPI app environment
 
 1. Clone the repo and switch to the repo folder. 
@@ -32,6 +31,14 @@ source venv/bin/activate
 3. Install all dependencies:
 ```bash
 pip install -r requirements.txt
+```
+
+4. In main.py, modify the OTEL exporter to use the Digma backend as well. For the 'backend_url' parameter in the Digma instrumentation (line 33) replace 'localhost' with the URL provided to your account, like so:
+
+```python
+digma_opentelemetry_boostrap(service_name='server-ms', digma_backend="http://[ACCOUNT_URL]:5050",
+                             configuration=DigmaConfiguration().trace_this_package()
+                            .set_environment('dev'))
 ```
 
 4. Run the main file.
