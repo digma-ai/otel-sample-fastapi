@@ -1,22 +1,22 @@
 import os
-import random
-from typing import List, Optional
+from typing import List
+from typing import Optional
 
 import git
 import uvicorn as uvicorn
 from dotenv import load_dotenv
-from fastapi import FastAPI
-from fastapi.params import Query
-from database_validation import Permisson
-
-from database_validation import DomainValidator
+from fastapi import FastAPI, Query
 from opentelemetry.instrumentation.digma import DigmaConfiguration
-from root_api_response import RootApiResponse
-from opentelemetry import trace
+from opentelemetry.instrumentation.digma.fastapi import DigmaFastAPIInstrumentor
+from opentelemetry.instrumentation.digma import digma_opentelemetry_boostrap
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
-from opentelemetry.instrumentation.digma import digma_opentelemetry_boostrap
 
+from database_validation import DomainValidator
+from database_validation import Permisson
+from opentelemetry import trace
+from root_api_response import RootApiResponse
 from user.user_service import UserService
 from user_validation import UserValidator
 
@@ -30,14 +30,15 @@ except:
 
 app = FastAPI()
 
-digma_opentelemetry_boostrap(service_name='server-ms', digma_backend="http://localhost:5050",
-                             configuration=DigmaConfiguration().trace_this_package()
-                            .set_environment('dev'))
+FastAPIInstrumentor.instrument_app(app)
+DigmaFastAPIInstrumentor.instrument_app(app)
 
 RequestsInstrumentor().instrument()
 LoggingInstrumentor().instrument(set_logging_format=True)
 tracer = trace.get_tracer(__name__)
 
+digma_opentelemetry_boostrap(service_name='server-ms', digma_backend="http://localhost:5050",
+                             configuration=DigmaConfiguration().trace_this_package())
 user_service = UserService()
 
 @app.get("/")
