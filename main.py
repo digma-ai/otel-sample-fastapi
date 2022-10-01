@@ -70,7 +70,7 @@ async def validate(user_ids: Optional[List[str]] = Query(None)):
 
 @app.get("/process")
 async def process():
-    with tracer.start_as_current_span("user validation"):
+    with tracer.start_as_current_span("process validation"):
         await DomainValidator().validate_permissions()
 
 
