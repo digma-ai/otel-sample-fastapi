@@ -1,0 +1,13 @@
+
+###
+
+GET http://localhost:8000/example1 HTTP/1.1
+###
+
+GET http://localhost:8000/
+###
+
+GET http://localhost:8000/login
+###
+
+GET http://localhost:8000/validate

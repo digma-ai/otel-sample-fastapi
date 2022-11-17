@@ -1,7 +1,7 @@
 import os
 from typing import List
 from typing import Optional
-
+import requests
 import git
 import uvicorn as uvicorn
 from dotenv import load_dotenv
@@ -40,6 +40,14 @@ tracer = trace.get_tracer(__name__)
 digma_opentelemetry_boostrap(service_name='server-ms', digma_backend="http://localhost:5050",
                              configuration=DigmaConfiguration().trace_this_package())
 user_service = UserService()
+
+@app.get("/example1/")
+def method1():
+    with tracer.start_as_current_span("span2"):
+        requests.get('https://xkcd.com/1906/')
+    
+    with tracer.start_as_current_span("span3"):
+        requests.get('https://xkcd.com/1906/')
 
 @app.get("/")
 async def root():
