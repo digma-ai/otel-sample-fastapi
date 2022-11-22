@@ -12,6 +12,7 @@ from opentelemetry.instrumentation.digma import digma_opentelemetry_boostrap
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.semconv.trace import SpanAttributes
 
 from database_validation import DomainValidator
 from database_validation import Permisson
@@ -19,7 +20,7 @@ from opentelemetry import trace
 from root_api_response import RootApiResponse
 from user.user_service import UserService
 from user_validation import UserValidator
-
+import traceback
 load_dotenv()
 
 try:
@@ -43,11 +44,19 @@ user_service = UserService()
 
 @app.get("/example1/")
 def method1():
-    with tracer.start_as_current_span("span2"):
-        requests.get('https://xkcd.com/1906/')
     
-    with tracer.start_as_current_span("span3"):
-        requests.get('https://xkcd.com/1906/')
+    with tracer.start_as_current_span(some_other_method.__name__):
+        
+        stack = traceback.extract_stack()
+        trace.get_current_span().set_attribute(SpanAttributes.CODE_FILEPATH, 
+            stack[-1].filename )
+        trace.get_current_span().set_attribute(SpanAttributes.CODE_FUNCTION,
+              method1.__name__)
+
+        some_other_method()
+
+def some_other_method():
+    pass
 
 @app.get("/")
 async def root():
